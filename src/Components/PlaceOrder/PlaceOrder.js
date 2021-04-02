@@ -25,7 +25,7 @@ const PlaceOrder = () => {
       date: new Date().toDateString(),
     };
 
-    fetch("http://localhost:5000/placeOrder", {
+    fetch("https://fast-escarpment-60313.herokuapp.com/placeOrder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -9,7 +9,7 @@ const Orders = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders`)
+    fetch(`https://fast-escarpment-60313.herokuapp.com/orders`)
       .then((res) => res.json())
       .then((data) => {
         const userOrder = data.filter((order) => order.userId === id);

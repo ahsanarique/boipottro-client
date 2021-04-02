@@ -16,7 +16,7 @@ const AddBook = () => {
       imageURL: imageURL,
     };
 
-    fetch("http://localhost:5000/addBook", {
+    fetch("https://fast-escarpment-60313.herokuapp.com/addBook", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

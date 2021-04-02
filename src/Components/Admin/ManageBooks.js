@@ -14,7 +14,7 @@ const ManageBooks = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/books")
+    fetch("https://fast-escarpment-60313.herokuapp.com/books")
       .then((res) => res.json())
       .then((data) => {
         setBookData(data);
@@ -23,7 +23,7 @@ const ManageBooks = () => {
 
   useEffect(() => {
     if (deleteId !== "") {
-      const url = `http://localhost:5000/delete/${deleteId}`;
+      const url = `https://fast-escarpment-60313.herokuapp.com/delete/${deleteId}`;
       axios.delete(url);
     }
   }, [deleteId]);

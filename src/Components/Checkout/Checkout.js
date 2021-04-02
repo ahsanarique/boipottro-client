@@ -13,7 +13,7 @@ const Checkout = () => {
   const cartIcon = <FontAwesomeIcon icon={faShoppingCart} />;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/book/${id}`)
+    fetch(`https://fast-escarpment-60313.herokuapp.com/book/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setBook(data);
