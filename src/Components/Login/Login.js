@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import {
@@ -31,7 +32,8 @@ const Login = () => {
   };
 
   const loginDivStyle = {
-    width: "30rem",
+    maxWidth: "30rem",
+    height: "40rem",
   };
 
   const handleResponse = (res, redirect) => {
@@ -45,16 +47,31 @@ const Login = () => {
   const facebookIcon = <FontAwesomeIcon icon={faFacebookSquare} />;
 
   return (
-    <div>
-      <div style={loginDivStyle} className="text-center my-4">
-        <Button onClick={() => googleSignIn()} variant="info" size="lg" block>
-          <span className="mx-2">{googleIcon}</span> Sign in with Google
-        </Button>
-        <Button onClick={() => fbSignIn()} variant="info" size="lg" block>
-          <span className="mx-2">{facebookIcon}</span> Sign in with Facebook
-        </Button>
-      </div>
-    </div>
+    <Card bg="dark" style={loginDivStyle} className="container my-5 rounded">
+      <Card.Body className="d-flex flex-column justify-content-center">
+        <div className="mb-4">
+          <Button
+            onClick={() => googleSignIn()}
+            variant="outline-warning"
+            size="lg"
+            block
+          >
+            <span className="mx-2">{googleIcon}</span> Continue with Google
+          </Button>
+        </div>
+
+        <div>
+          <Button
+            onClick={() => fbSignIn()}
+            variant="outline-warning"
+            size="lg"
+            block
+          >
+            <span className="mx-2">{facebookIcon}</span> Continue with Facebook
+          </Button>
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
 

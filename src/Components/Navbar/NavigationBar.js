@@ -9,7 +9,7 @@ import { UserContext } from "../../App";
 
 const NavigationBar = () => {
   const [loggedInUser] = useContext(UserContext);
-  const { image, isSignedIn } = loggedInUser;
+  const { image, isSignedIn, userId } = loggedInUser;
 
   const loginIcon = <FontAwesomeIcon icon={faSignInAlt} />;
   const bookIcon = <FontAwesomeIcon icon={faBookOpen} />;
@@ -38,7 +38,7 @@ const NavigationBar = () => {
           <Link className="nav-link mx-2" to="/">
             Home
           </Link>
-          <Link className="nav-link mx-2" to="/orders">
+          <Link className="nav-link mx-2" to={`/orders=${userId}`}>
             Orders
           </Link>
           <Link className="nav-link mx-2" to="/admin">
@@ -53,7 +53,7 @@ const NavigationBar = () => {
           avatar
         ) : (
           <Link className="mx-2" to="/login">
-            <Button variant="outline-info">{loginIcon} Login</Button>
+            <Button variant="primary">{loginIcon} Login</Button>
           </Link>
         )}
       </Navbar>

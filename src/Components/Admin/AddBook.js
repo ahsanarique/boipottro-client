@@ -1,12 +1,31 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import axios from "axios";
 
 const AddBook = () => {
   const { register, handleSubmit, errors } = useForm();
   const [imageURL, setImageURL] = useState("");
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const bookData = {
+      book: data.book,
+      author: data.author,
+      price: data.price,
+      imageURL: imageURL,
+    };
+
+    fetch("http://localhost:5000/addBook", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bookData),
+    }).then((res) => {
+      console.log("added to server", res);
+    });
+  };
 
   const handleImageUpload = (event) => {
     const imageData = new FormData();
@@ -25,67 +44,64 @@ const AddBook = () => {
   return (
     <div className="m-5">
       <h2>Add Book</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-3">
-          <label htmlFor="bookName" className="form-label">
-            Book Name
-          </label>
-          <input
+      <hr />
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form.Group>
+          <Form.Label>
+            Book Name:{" "}
+            {errors.book && <span className="text-danger">Required</span>}
+          </Form.Label>
+          <Form.Control
             name="book"
             type="text"
-            className="form-control"
             placeholder="Enter Book Name"
             ref={register({ required: true })}
-            id="bookName"
           />
-        </div>
+        </Form.Group>
 
-        <div className="mb-3">
-          <label htmlFor="authorName" className="form-label">
-            Author Name
-          </label>
-          <input
+        <Form.Group>
+          <Form.Label>
+            Author Name:{" "}
+            {errors.author && <span className="text-danger">Required</span>}
+          </Form.Label>
+          <Form.Control
             name="author"
             type="text"
-            className="form-control"
             placeholder="Enter Author Name"
             ref={register({ required: true })}
-            id="authorName"
           />
-        </div>
+        </Form.Group>
 
-        <div className="mb-3">
-          <label htmlFor="price" className="form-label">
-            Add Price
-          </label>
-          <input
+        <Form.Group>
+          <Form.Label>
+            Add Price:{" "}
+            {errors.price && <span className="text-danger">Required</span>}
+          </Form.Label>
+          <Form.Control
             name="price"
             type="number"
-            className="form-control"
             placeholder="Enter Price"
             ref={register({ required: true })}
-            id="price"
           />
-        </div>
+        </Form.Group>
 
-        <div className="mb-3">
-          <label htmlFor="formFile" className="form-label">
-            Add Book Cover Image
-          </label>
-          <input
-            className="form-control"
+        <Form.Group>
+          <Form.Label>
+            Add Book Cover Image:{" "}
+            {errors.bookCover && <span className="text-danger">Required</span>}
+          </Form.Label>
+          <Form.Control
+            name="bookCover"
             type="file"
-            id="formFile"
             onChange={handleImageUpload}
+            ref={register({ required: true })}
           />
-        </div>
-
-        {errors.exampleRequired && <span>This field is required</span>}
-
-        <button className="btn btn-outline-info btn-lg" type="submit" block>
+        </Form.Group>
+        <hr />
+        <Button variant="outline-primary" size="lg" type="submit" block>
           Save
-        </button>
-      </form>
+        </Button>
+      </Form>
     </div>
   );
 };

@@ -12,12 +12,12 @@ const Search = () => {
     <div className="container mt-5">
       <InputGroup className="mb-3">
         <FormControl
-          placeholder="Search Books (feature not yet implemented)"
+          placeholder="Search Books (feature not implemented yet)"
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
         />
         <InputGroup.Append>
-          <Button variant="outline-info">{searchIcon} Search</Button>
+          <Button variant="primary">{searchIcon} Search</Button>
         </InputGroup.Append>
       </InputGroup>
     </div>
