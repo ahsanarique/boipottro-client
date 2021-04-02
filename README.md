@@ -1,6 +1,6 @@
 # Boipottro App
 
-## Live: TBA
+## Live: https://boipottro-f9a61.web.app/
 
 ### Simulating an online bookshop with e-commerce functionalities.
 
